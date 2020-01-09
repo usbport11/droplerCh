@@ -1,0 +1,42 @@
+Changed dropler plugin for CKEditor (version 4) using drag&drop localy
+
+Installation:
+1) copy dropler folder to plugins directory
+2) copy upload.php file (change ip or servername there, change folder where files will be uploaded)
+3) make changes in config.js (change ip or servername there)
+CKEDITOR.editorConfig = function( config ) {
+	config.extraPlugins = 'dropler';
+	config.droplerConfig = {
+		backend: 'basic',
+		settings: {
+			uploadUrl: 'http://192.168.1.12/test2/upload.php'
+		}
+	}
+};
+4) index.html
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>A Simple Page with CKEditor</title>
+        <script src="ckeditor/ckeditor.js"></script>
+	<script>
+		CKEDITOR.on('instanceReady', function( ev ) {
+			//not shure that this is needed
+		});
+    </script>
+    </head>
+    <body>
+        <form>
+            <textarea class="ckeditor" name="editor1" id="editor1" rows="10" cols="80">
+                This is my textarea to be replaced with CKEditor.
+            </textarea>
+        </form>
+    </body>
+</html>
+5) make sure that folder for images exist and you have rights to create files there
+
+Commentaries:
+- Based on https://github.com/chriskiehl/Dropler
+- Multiple images upload not tested
+- Contain many console log messages (from plugin.js file)
+- While drag and drop process icon on pictute not changing
